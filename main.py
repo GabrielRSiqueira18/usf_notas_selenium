@@ -11,8 +11,12 @@ def main():
         print('Ra ou Senha inválido!!!')
         sys.exit(1)
 
-    if logged:
-        selenium.enter_in_materials()
+    entered = selenium.enter_in_materials()
+
+    if not entered:
+        print('Não foi possível entrar no resumo acadêmico! ')
+
+    selenium.get_note("engenharia de software")
 
 if __name__ == '__main__':
     sys.exit(main())
