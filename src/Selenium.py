@@ -1,7 +1,6 @@
 import sys
 
 from selenium import webdriver
-import pandas as pd
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -31,7 +30,7 @@ class Selenium(webdriver.Chrome):
         login_button.click()
 
         try:
-            element_pos_login = WebDriverWait(self, 5).until(
+            element_pos_login = WebDriverWait(self, 2).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'avatar-usf'))
             )
 
@@ -62,7 +61,7 @@ class Selenium(webdriver.Chrome):
                         self.execute_script("arguments[0].click();", link)
                     break
 
-            WebDriverWait(self, 10).until(
+            WebDriverWait(self, 2).until(
                 EC.presence_of_element_located((By.ID, 'fonte_linha_cabecalho'))
             )
             print("Navegação bem-sucedida")
@@ -104,7 +103,7 @@ class Selenium(webdriver.Chrome):
             button_to_get_notes = element.find_element(By.CLASS_NAME, 'btn')
             button_to_get_notes.click()
 
-            wait = WebDriverWait(self, 10)
+            wait = WebDriverWait(self, 2)
             wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'modal-body')))
 
             tables = self.find_elements(By.CLASS_NAME, 'modal-body')
@@ -144,4 +143,3 @@ class Selenium(webdriver.Chrome):
 
                 if title and note:
                     print(f'{title}: {note}')
-

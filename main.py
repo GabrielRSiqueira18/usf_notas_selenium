@@ -1,11 +1,16 @@
 import sys
+import time
+
 from src.Selenium import Selenium
 
 
 def main():
     selenium = Selenium('https://www.usf.edu.br/apps/portal2/login')
 
-    logged = selenium.login('202205328', 'Gabriel1')
+    ra = input("Digite seu RA: ")
+    password = input("Digite sua senha: ")
+
+    logged = selenium.login(ra, password)
 
     if not logged:
         print('Ra ou Senha inválido!!!')
@@ -16,7 +21,12 @@ def main():
     if not entered:
         print('Não foi possível entrar no resumo acadêmico! ')
 
-    selenium.get_note("engenharia de software")
+    subject = input('Digite o nome da matéria: ')
+
+    selenium.get_note(subject)
+
+    time.sleep(30)
+
 
 if __name__ == '__main__':
     sys.exit(main())
